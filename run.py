@@ -2,7 +2,7 @@
 import falcon, os, json
 
 # adapt to your needs
-os.chdir("/mnt/d/github_repos/wahldaten-api")
+os.chdir("/opt/app")
 
 
 class getWkByPlz():

@@ -18,20 +18,36 @@ class getWkByPlz():
         except:
             resp.status = falcon.HTTP_404
             return
+        res = []
 
 
-    
-        try: 
-            with open('data/wahlkreise_btw_plz.json') as json_file:
-                data = json.load(json_file)
+        urls= [
+            "https://raw.githubusercontent.com/CubicrootXYZ/Wahldaten/master/Bundestagswahlen/Wahlkreise/wahlkreise_btw_plz.json"
+        ]
 
-                if key in data['data'].keys():
-                    resp.body = json.dumps({"status": "success", "data": data['data'][key]}) 
-                    resp.status = falcon.HTTP_200
-                else: 
-                    resp.body = json.dumps({"status": "success", "data": None}) 
-                    resp.status = falcon.HTTP_200
-        except:
+        for url in urls:
+            try: 
+                json_file = requests.get(url)
+                data = json_file.json()
+
+                for key_ in data['data'].keys():
+                    if key in key_:
+                        ap = data['data'][key_]
+                        ap['plz']  = key_
+                        res.append(ap)
+            except Exception as e:
+                print (e)
+
+
+        try:
+            if len(res)>0:
+                resp.body = json.dumps({"status": "success", "data": res}) 
+                resp.status = falcon.HTTP_200
+            else: 
+                resp.body = json.dumps({"status": "success", "data": None}) 
+                resp.status = falcon.HTTP_200
+        except Exception as e:
+            print(e)
             resp.status = falcon.HTTP_404
 
 class getWkByName():
@@ -46,25 +62,36 @@ class getWkByName():
         except:
             resp.status = falcon.HTTP_404
             return
+        res = []
 
 
-    
-        try: 
-            with open('data/wahlkreise_btw_gemeinde.json') as json_file:
-                data = json.load(json_file)
-                res = []
+        urls= [
+            "https://raw.githubusercontent.com/CubicrootXYZ/Wahldaten/master/Bundestagswahlen/Wahlkreise/wahlkreise_btw_gemeinde.json"
+        ]
+
+        for url in urls:
+            try: 
+                json_file = requests.get(url)
+                data = json_file.json()
+
                 for key_ in data['data'].keys():
                     if key in key_:
                         ap = data['data'][key_]
-                        ap['gemeinde']  = key_
+                        ap['name']  = key_
                         res.append(ap)
-                if len(res)>0:
-                    resp.body = json.dumps({"status": "success", "data": res}) 
-                    resp.status = falcon.HTTP_200
-                else: 
-                    resp.body = json.dumps({"status": "success", "data": None}) 
-                    resp.status = falcon.HTTP_200
-        except:
+            except Exception as e:
+                print (e)
+
+
+        try:
+            if len(res)>0:
+                resp.body = json.dumps({"status": "success", "data": res}) 
+                resp.status = falcon.HTTP_200
+            else: 
+                resp.body = json.dumps({"status": "success", "data": None}) 
+                resp.status = falcon.HTTP_200
+        except Exception as e:
+            print(e)
             resp.status = falcon.HTTP_404
 
 class getWkByWkname():
@@ -79,26 +106,36 @@ class getWkByWkname():
         except:
             resp.status = falcon.HTTP_404
             return
+        res = []
 
 
-    
-        try: 
-            with open('data/wahlkreise_btw_wahlkreis.json') as json_file:
-                data = json.load(json_file)
+        urls= [
+            "https://raw.githubusercontent.com/CubicrootXYZ/Wahldaten/master/Bundestagswahlen/Wahlkreise/wahlkreise_btw_wahlkreis.json"
+        ]
 
-                res = []
+        for url in urls:
+            try: 
+                json_file = requests.get(url)
+                data = json_file.json()
+
                 for key_ in data['data'].keys():
                     if key in key_:
                         ap = data['data'][key_]
-                        ap['wahlkreis_bezeichnung']  = key_
+                        ap['wahlkreis_name']  = key_
                         res.append(ap)
-                if len(res)>0:
-                    resp.body = json.dumps({"status": "success", "data": res}) 
-                    resp.status = falcon.HTTP_200
-                else: 
-                    resp.body = json.dumps({"status": "success", "data": None}) 
-                    resp.status = falcon.HTTP_200
-        except:
+            except Exception as e:
+                print (e)
+
+
+        try:
+            if len(res)>0:
+                resp.body = json.dumps({"status": "success", "data": res}) 
+                resp.status = falcon.HTTP_200
+            else: 
+                resp.body = json.dumps({"status": "success", "data": None}) 
+                resp.status = falcon.HTTP_200
+        except Exception as e:
+            print(e)
             resp.status = falcon.HTTP_404
 
 class getWkByWknum():
@@ -113,20 +150,36 @@ class getWkByWknum():
         except:
             resp.status = falcon.HTTP_404
             return
+        res = []
 
 
-    
-        try: 
-            with open('data/wahlkreise_btw_wahlkreisnummer.json') as json_file:
-                data = json.load(json_file)
+        urls= [
+            "https://raw.githubusercontent.com/CubicrootXYZ/Wahldaten/master/Bundestagswahlen/Wahlkreise/wahlkreise_btw_wahlkreisnummer.json"
+        ]
 
-                if key in data['data'].keys():
-                    resp.body = json.dumps({"status": "success", "data": data['data'][key]}) 
-                    resp.status = falcon.HTTP_200
-                else: 
-                    resp.body = json.dumps({"status": "success", "data": None}) 
-                    resp.status = falcon.HTTP_200
-        except:
+        for url in urls:
+            try: 
+                json_file = requests.get(url)
+                data = json_file.json()
+
+                for key_ in data['data'].keys():
+                    if key in key_:
+                        ap = data['data'][key_]
+                        ap['wahlkreis_nummer']  = key_
+                        res.append(ap)
+            except Exception as e:
+                print (e)
+
+
+        try:
+            if len(res)>0:
+                resp.body = json.dumps({"status": "success", "data": res}) 
+                resp.status = falcon.HTTP_200
+            else: 
+                resp.body = json.dumps({"status": "success", "data": None}) 
+                resp.status = falcon.HTTP_200
+        except Exception as e:
+            print(e)
             resp.status = falcon.HTTP_404
 
 class getKv():
@@ -261,6 +314,139 @@ class getLv():
         except Exception as e:
             print(e)
             resp.status = falcon.HTTP_404
+
+
+class getBwWkByPlz():
+    def on_get(self, req, resp):
+        resp.set_header('Access-Control-Allow-Origin', '*')
+        resp.set_header('Access-Control-Allow-Methods', 'GET')
+        resp.set_header('Access-Control-Allow-Headers', 'Content-Type')
+
+        try:
+            key = req.params['plz']
+            data = {"status": "success", "data": {}}      
+        except:
+            resp.status = falcon.HTTP_404
+            return
+        res = []
+
+
+        urls= [
+            "https://raw.githubusercontent.com/CubicrootXYZ/Wahldaten/master/Landtagswahlen/Wahlkreise/wahlkreise_ltw_plz.json"
+        ]
+
+        for url in urls:
+            try: 
+                json_file = requests.get(url)
+                data = json_file.json()
+
+                for key_ in data['data'].keys():
+                    if key in key_:
+                        ap = data['data'][key_]
+                        ap['plz']  = key_
+                        res.append(ap)
+            except Exception as e:
+                print (e)
+
+
+        try:
+            if len(res)>0:
+                resp.body = json.dumps({"status": "success", "data": res}) 
+                resp.status = falcon.HTTP_200
+            else: 
+                resp.body = json.dumps({"status": "success", "data": None}) 
+                resp.status = falcon.HTTP_200
+        except Exception as e:
+            print(e)
+            resp.status = falcon.HTTP_404
+
+class getBwWkByName():
+    def on_get(self, req, resp):
+        resp.set_header('Access-Control-Allow-Origin', '*')
+        resp.set_header('Access-Control-Allow-Methods', 'GET')
+        resp.set_header('Access-Control-Allow-Headers', 'Content-Type')
+
+        try:
+            key = req.params['name']
+            data = {"status": "success", "data": {}}      
+        except:
+            resp.status = falcon.HTTP_404
+            return
+        res = []
+
+
+        urls= [
+            "https://raw.githubusercontent.com/CubicrootXYZ/Wahldaten/master/Landtagswahlen/Wahlkreise/wahlkreise_ltw_gemeinde.json"
+        ]
+
+        for url in urls:
+            try: 
+                json_file = requests.get(url)
+                data = json_file.json()
+
+                for key_ in data['data'].keys():
+                    if key in key_:
+                        ap = data['data'][key_]
+                        ap['name']  = key_
+                        res.append(ap)
+            except Exception as e:
+                print (e)
+
+
+        try:
+            if len(res)>0:
+                resp.body = json.dumps({"status": "success", "data": res}) 
+                resp.status = falcon.HTTP_200
+            else: 
+                resp.body = json.dumps({"status": "success", "data": None}) 
+                resp.status = falcon.HTTP_200
+        except Exception as e:
+            print(e)
+            resp.status = falcon.HTTP_404
+
+class getBwWkByWkname():
+    def on_get(self, req, resp):
+        resp.set_header('Access-Control-Allow-Origin', '*')
+        resp.set_header('Access-Control-Allow-Methods', 'GET')
+        resp.set_header('Access-Control-Allow-Headers', 'Content-Type')
+
+        try:
+            key = req.params['name']
+            data = {"status": "success", "data": {}}      
+        except:
+            resp.status = falcon.HTTP_404
+            return
+        res = []
+
+
+        urls= [
+            "https://raw.githubusercontent.com/CubicrootXYZ/Wahldaten/master/Landtagswahlen/Wahlkreise/wahlkreise_ltw_wahlkreis.json"
+        ]
+
+        for url in urls:
+            try: 
+                json_file = requests.get(url)
+                data = json_file.json()
+
+                for key_ in data['data'].keys():
+                    if key in key_:
+                        ap = data['data'][key_]
+                        ap['wahlkreis_name']  = key_
+                        res.append(ap)
+            except Exception as e:
+                print (e)
+
+
+        try:
+            if len(res)>0:
+                resp.body = json.dumps({"status": "success", "data": res}) 
+                resp.status = falcon.HTTP_200
+            else: 
+                resp.body = json.dumps({"status": "success", "data": None}) 
+                resp.status = falcon.HTTP_200
+        except Exception as e:
+            print(e)
+            resp.status = falcon.HTTP_404
         
 
         
@@ -270,6 +456,10 @@ api.req_options.auto_parse_form_urlencoded=True
 api.add_route('/getwkbyplz', getWkByPlz())
 api.add_route('/getwkbyname', getWkByName())
 api.add_route('/getwkbywkname', getWkByWkname())
+api.add_route('/getwkbywknum', getWkByWknum())
+api.add_route('/getbwwkbyplz', getBwWkByPlz())
+api.add_route('/getbwwkbyname', getBwWkByName())
+api.add_route('/getbwwkbywkname', getBwWkByWkname())
 api.add_route('/getwkbywknum', getWkByWknum())
 api.add_route('/getkv', getKv())
 api.add_route('/getbzv', getBzv())

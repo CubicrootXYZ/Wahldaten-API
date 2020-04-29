@@ -19,3 +19,9 @@ WORKDIR /opt/app
 ENTRYPOINT ["gunicorn", "run:api",  "--workers 10",  "-b 0.0.0.0:8080",  "--reload"]
 
 ```
+
+## Known issues
+
+**Missing PLZs**
+
+The data is build onto some official data sets. They aren't the best ones. Go ahead and add the one's you are missing to the [Wahldaten repo](https://github.com/CubicrootXYZ/Wahldaten). 
